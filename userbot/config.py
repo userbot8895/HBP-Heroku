@@ -34,5 +34,5 @@ class ConfigClass(object):
     # The format of the repo should be "<github_username>/<github_repo>"
     # Example: "nunopenim/modules-universe" , although this is not a community repo :)
     #
-    COMMUNITY_REPOS = []
+    COMMUNITY_REPOS = ["userbot8895/HyperBot_Plus"]
 
