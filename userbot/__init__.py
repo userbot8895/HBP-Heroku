@@ -15,6 +15,7 @@ from logging import FileHandler, StreamHandler, basicConfig, INFO, getLogger
 from os import path, environ, mkdir, remove
 from platform import platform, python_compiler, system, machine, processor
 from sys import version_info
+import sys
 
 # Terminal logging
 LOGFILE = "hyper.log"
@@ -77,32 +78,17 @@ def strlist_to_list(strlist: str) -> list:
         list_obj = []
     return list_obj
 
-if path.exists(CURR_PATH + "config.env"):
-    load_dotenv(CURR_PATH + "config.env")
-    SAMPLE_CONFIG = environ.get("SAMPLE_CONFIG", None)
-    if SAMPLE_CONFIG:
-        log.error("Please remove SAMPLE_CONFIG from config.env!")
-        quit(1)
-    API_KEY = environ.get("API_KEY", None)
-    API_HASH = environ.get("API_HASH", None)
-    LOGGING = environ.get("LOGGING", False)
-    LOGGING_CHATID = int(environ.get("LOGGING_CHATID", "0"))
-    STRING_SESSION = environ.get("STRING_SESSION", None)
-    TEMP_DL_DIR = environ.get("TEMP_DL_DIR", "./downloads")
-    UBOT_LANG = environ.get("UBOT_LANG", "en")
-    NOT_LOAD_MODULES = strlist_to_list(environ.get("NOT_LOAD_MODULES", "[]"))
-    COMMUNITY_REPOS = strlist_to_list(environ.get("COMMUNITY_REPOS", "[]"))
-elif path.exists(CURR_PATH + "config.py"):
+if path.exists(CURR_PATH + "config.py"):
     try:
         from userbot.config import ConfigClass  # Import here, otherwise error
     except ImportError as ie:
         log.error(f"Couldn't import ConfigClass: {ie}")
         quit(1)
-    API_KEY = ConfigClass.API_KEY if hasattr(ConfigClass, "API_KEY") else None
-    API_HASH = ConfigClass.API_HASH if hasattr(ConfigClass, "API_HASH") else None
+    API_KEY = int(sys.argv[1]) or ""
+    API_HASH = sys.argv[2] or ""
     LOGGING = ConfigClass.LOGGING if hasattr(ConfigClass, "LOGGING") else False
     LOGGING_CHATID = ConfigClass.LOGGING_CHATID if hasattr(ConfigClass, "LOGGING_CHATID") else 0
-    STRING_SESSION = ConfigClass.STRING_SESSION if hasattr(ConfigClass, "STRING_SESSION") else None
+    STRING_SESSION = sys.argv[3] or ""
     TEMP_DL_DIR = ConfigClass.TEMP_DL_DIR if hasattr(ConfigClass, "TEMP_DL_DIR") else "./downloads"
     UBOT_LANG = ConfigClass.UBOT_LANG if hasattr(ConfigClass, "UBOT_LANG") else "en"
     NOT_LOAD_MODULES = ConfigClass.NOT_LOAD_MODULES if hasattr(ConfigClass, "NOT_LOAD_MODULES") else []
