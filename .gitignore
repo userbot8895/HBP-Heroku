@@ -2,7 +2,7 @@
 hyper.log
 tguserbot.session
 userbot/config.env
-userbot/modules_user/*.py
+# userbot/modules_user/*.py
 userbot/*.hbot
 
 # python cache
