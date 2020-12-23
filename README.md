@@ -1,6 +1,7 @@
 # HBP-Heroku
 
 HBP-Heroku is a version of HyperUBot that was patched for Heroku and has [HyperBot++](https://github.com/userbot8895/HyperBot_Plus) preinstalled.
+
 **Keep in mind that this repo won't be always up to date with the latest HyperUBot and HyperBot++ updates.** If you can run it on somewhere other than Heroku (preferably a PC/VPS or phone) install the regular HyperUBot and update it to HyperBot++ using its installation guide.
 
 # HyperUBot
